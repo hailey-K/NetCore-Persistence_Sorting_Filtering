@@ -1,0 +1,33 @@
+﻿@model a1OEC.Models.Variety
+
+@{
+    ViewData["message"] = ViewBag.message;
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p><h2>@ViewData["message"]</h2></p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <input type="hidden" asp-for="CropId" asp-items="ViewBag.CropId">
+        <!--
+        <dt>
+            @Html.DisplayNameFor(model => model.Crop)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Crop.CropId)
+        </dd>
+            -->
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.VarietyId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

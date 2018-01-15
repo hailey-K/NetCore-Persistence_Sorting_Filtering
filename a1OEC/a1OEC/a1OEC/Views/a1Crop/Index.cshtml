@@ -1,0 +1,47 @@
+﻿@model IEnumerable<a1OEC.Models.Crop>
+
+@{
+    ViewData["message"] = ViewBag.message;
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>@TempData["fromHKVarietyController"]</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OrderBy(item => item.Name)) {
+        <tr>
+
+            <td>
+                <a asp-area="" asp-controller="HKVariety" asp-action="index" asp-route-cropid="@item.CropId" asp-route-name="@item.Name">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CropId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CropId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CropId">Delete</a> |
+                <a asp-controller="HKPlot" asp-action="Index" asp-route-cropid="@item.CropId" asp-route-name="@item.Name" asp-route-where="Crop" >show plots</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
